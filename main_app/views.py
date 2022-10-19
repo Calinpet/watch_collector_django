@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # Add the following import
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Watch
 
 # Define the home view
@@ -22,4 +22,16 @@ def watches_detail(request, watch_id):
 class WatchCreate(CreateView):
   model = Watch
   fields = '__all__'
+  success_url = '/watches/'
+
+class WatchUpdate(UpdateView):
+  model: Watch 
+  # Let's disallow the renaming of a watch by excluding the name field!
+  fields = ['make', 'model', 'movement', 'description', 'price']
+
+class WatchDelete(DeleteView):
+  model = Watch
+  success_url = '/watches/'
+
+
 

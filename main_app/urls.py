@@ -9,4 +9,7 @@ urlpatterns = [
   path('watches/<int:watch_id>/', views.watches_detail, name='detail'),
   # new route used to show a form and create a cat
   path('watches/create/', views.WatchCreate.as_view(), name='watches_create'),
+  # Add the new routes below
+  path('watches/<int:pk>/update/', views.WatchUpdate.as_view(), name='watches_update'),
+  path('watches/<int:pk>/delete/', views.WatchDelete.as_view(), name='watches_delete'),
 ]

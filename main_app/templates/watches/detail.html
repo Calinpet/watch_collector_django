@@ -15,6 +15,10 @@
     <p>Price: Not Available</p>
     {% endif %}
   </div>
+  <div class="card-action">
+    <a href="{% url 'watches_update' watch.id %}">Edit</a>
+    <a href="{% url 'watches_delete' watch.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}
