@@ -2,6 +2,8 @@ from django.shortcuts import render
 # Add the following import
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Watch
+# import the ServiceForm
+from .forms import ServiceForm
 
 # Define the home view
 def home(request):

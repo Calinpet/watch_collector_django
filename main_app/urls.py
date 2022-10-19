@@ -12,4 +12,5 @@ urlpatterns = [
   # Add the new routes below
   path('watches/<int:pk>/update/', views.WatchUpdate.as_view(), name='watches_update'),
   path('watches/<int:pk>/delete/', views.WatchDelete.as_view(), name='watches_delete'),
+  path('watches/<int:watch_id>/add_service/', views.add_service, name='add_service'),
 ]
