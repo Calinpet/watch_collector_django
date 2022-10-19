@@ -8,6 +8,12 @@ PERIOD = (
   ('Q', 'Quartely'),
   ('M', 'Monthly')
 )
+class Strap(models.Model):
+  material = models.CharField(max_length=50)
+  color = models.CharField(max_length=50)
+
+  def get_absolute_ul(self):
+      return reverse('straps_detail', kwargs={'pk': self.id})
 
 # Create your models here.
 class Watch(models.Model):
@@ -16,8 +22,9 @@ class Watch(models.Model):
   movement = models.CharField(max_length=100)
   description = models.TextField(max_length=300)
   price = models.IntegerField()
+  straps = models.ManyToManyField(Strap)
 
-
+ # changes to instance methods do not require re-generation / running of migrations
   def __str__(self):
       return self.make
 
@@ -41,3 +48,6 @@ class Service(models.Model):
   def __str__(self):
     # Nice method for obtaining the friendly value of a Field.choice
     return f"{self.get_period_display()} on {self.date}"
+  # change the default sort
+  class Meta:
+    ordering = ['-date']  
