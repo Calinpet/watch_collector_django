@@ -1,11 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Watches List</h1>
+<h1>Watch Details</h1>
 
-{% for watch in watches %}
 <div class="card">
- <a href="{% url 'detail' watch.id %}">
-   <div class="card-content">
+  <div class="card-content">
     <span class="card-title">{{ watch.name }}</span>
     <p>Make: {{ watch.make }}</p>
     <p>Model: {{ watch.model }}</p>
@@ -16,7 +14,7 @@
     {% else %}
     <p>Price: Not Available</p>
     {% endif %}
-   </div>
-  </a>
+  </div>
 </div>
-{% endfor %} {% endblock %}
+
+{% endblock %}

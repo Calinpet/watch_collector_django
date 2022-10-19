@@ -1,6 +1,5 @@
 from django.shortcuts import render
 # Add the following import
-from django.http import HttpResponse
 from .models import Watch
 
 # Define the home view
@@ -13,10 +12,9 @@ def about(request):
 # Add new view
 def watches_index(request):
   watches = Watch.objects.all()
-  return render(request, 'watches/index.html', { 'watches': watches })  
+  return render(request, 'watches/index.html', { 'watches': watches })
 
-watches = [
-  Watch('TAG Heuer', 'Calibre 16', 'Automatic Chronograph', 'Great watch', 5400),
-  Watch('TAG Heur', 'Formula 1', 'Quartz Chronograf', 'Silver grey, fixed ceramic bezel', 2450),
-  Watch('G-shock', 'Adventure', 'Quartz', 'Good reliable watch for outdoors', 150)
-]   
+def watches_detail(request, watch_id):
+  watch = Watch.objects.get(id=watch_id)
+  return render(request, 'watches/detail.html', { 'watch': watch })
+
