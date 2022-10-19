@@ -25,7 +25,7 @@ class WatchCreate(CreateView):
   success_url = '/watches/'
 
 class WatchUpdate(UpdateView):
-  model: Watch 
+  model = Watch 
   # Let's disallow the renaming of a watch by excluding the name field!
   fields = ['make', 'model', 'movement', 'description', 'price']
 

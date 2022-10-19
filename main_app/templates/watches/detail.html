@@ -1,24 +1,45 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Watch Details</h1>
+<h1>Cat Details</h1>
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ watch.name }}</span>
-    <p>Make: {{ watch.make }}</p>
-    <p>Model: {{ watch.model }}</p>
-    <p>Movement: {{ watch.movement }}</p>
-    <p>Description: {{ watch.description }}</p>
-    {% if watch.price > 0 %}
-    <p>Price: {{ watch.price }}</p>
-    {% else %}
-    <p>Price: Not Available</p>
-    {% endif %}
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ watch.name }}</span>
+        <p>Make: {{ watch.make }}</p>
+        <p>Model: {{ watch.model }}</p>
+        <p>Movement: {{ watch.movement }}</p>
+        <p>Description: {{ watch.description }}</p>
+        {% if watch.price > 0 %}
+        <p>Price: {{ watch.price }}</p>
+        {% else %}
+        <p>Price: Not Available</p>
+        {% endif %}
+      </div>
+      <div class="card-action">
+        <a href="{% url 'watches_update' watch.id %}">Edit</a>
+        <a href="{% url 'watches_delete' watch.id %}">Delete</a>
+      </div>
+    </div>
   </div>
-  <div class="card-action">
-    <a href="{% url 'watches_update' watch.id %}">Edit</a>
-    <a href="{% url 'watches_delete' watch.id %}">Delete</a>
+  <div class="col s6">
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Period</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for service in cat.service_set.all %}
+        <tr>
+          <td>{{service.date}}</td>
+          <td>{{service.get_period_display}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
-
 {% endblock %}

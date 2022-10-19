@@ -26,7 +26,7 @@ class Watch(models.Model):
      return reverse('detail', kwargs={'watch_id': self.id})
 
 class Service(models.Model):
-  date = models.DateField()
+  date = models.DateField('service date')
   period = models.CharField(
     max_length=1,
     # add the 'choices' field option
@@ -36,7 +36,7 @@ class Service(models.Model):
   ) 
 
   # Create a watch_id FK
-  cat = models.ForeignKey(Watch, on_delete=models.CASCADE)
+  watch = models.ForeignKey(Watch, on_delete=models.CASCADE)
 
   def __str__(self):
     # Nice method for obtaining the friendly value of a Field.choice
