@@ -1,6 +1,9 @@
 from django.db import models
 # Import the reverse function
 from django.urls import reverse
+from datetime import date
+# Import the User
+from django.contrib.auth.models import User
 
 # A tuple of 2-tuples
 PERIOD = (
@@ -23,6 +26,7 @@ class Watch(models.Model):
   description = models.TextField(max_length=300)
   price = models.IntegerField()
   straps = models.ManyToManyField(Strap)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
  # changes to instance methods do not require re-generation / running of migrations
   def __str__(self):
