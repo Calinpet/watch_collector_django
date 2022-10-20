@@ -19,4 +19,5 @@ urlpatterns = [
   path('straps/<int:pk>/update/', views.StrapUpdate.as_view(), name='straps_update'),
   path('straps/<int:pk>/delete/', views.StrapDelete.as_view(), name='straps_delete'),
   path('watches/<int:watch_id>/assoc_strap/<int:strap_id>/', views.assoc_strap, name='assoc_strap'),
+  path('accounts/signup/', views.signup, name='signup'),
 ]
