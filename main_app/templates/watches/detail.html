@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Cat Details</h1>
+<h1>Watch Details</h1>
 
 <div class="row">
   <div class="col s6">
@@ -34,12 +34,12 @@
     <table class="striped">
       <thead>
         <tr>
-          <th>Date</th>
+          <th>Name</th>
           <th>Period</th>
         </tr>
       </thead>
       <tbody>
-        {% for service in cat.service_set.all %}
+        {% for service in watch.service_set.all %}
         <tr>
           <td>{{service.date}}</td>
           <td>{{service.get_period_display}}</td>

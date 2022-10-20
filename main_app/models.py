@@ -12,7 +12,7 @@ class Strap(models.Model):
   material = models.CharField(max_length=50)
   color = models.CharField(max_length=50)
 
-  def get_absolute_ul(self):
+  def get_absolute_url(self):
       return reverse('straps_detail', kwargs={'pk': self.id})
 
 # Create your models here.
@@ -47,7 +47,7 @@ class Service(models.Model):
 
   def __str__(self):
     # Nice method for obtaining the friendly value of a Field.choice
-    return f"{self.get_period_display()} on {self.date}"
+    return f"{self.get_service_display()} on {self.date}"
   # change the default sort
   class Meta:
     ordering = ['-date']  

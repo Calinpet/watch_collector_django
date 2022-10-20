@@ -13,4 +13,10 @@ urlpatterns = [
   path('watches/<int:pk>/update/', views.WatchUpdate.as_view(), name='watches_update'),
   path('watches/<int:pk>/delete/', views.WatchDelete.as_view(), name='watches_delete'),
   path('watches/<int:watch_id>/add_service/', views.add_service, name='add_service'),
+  path('straps/', views.StrapList.as_view(), name='straps_index'),
+  path('straps/<int:pk>/', views.StrapDetail.as_view(), name='straps_detail'),
+  path('straps/create/', views.StrapCreate.as_view(), name='straps_create'),
+  path('straps/<int:pk>/update/', views.StrapUpdate.as_view(), name='straps_update'),
+  path('straps/<int:pk>/delete/', views.StrapDelete.as_view(), name='straps_delete'),
+  path('watches/<int:watch_id>/assoc_strap/<int:strap_id>/', views.assoc_strap, name='assoc_strap'),
 ]
