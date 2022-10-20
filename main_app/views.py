@@ -3,6 +3,10 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth import login
+# Import the login_required decorator
+from django.contrib.auth.decorators import login_required
+# Import the mixin for class-based views
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Watch, Strap
@@ -18,10 +22,11 @@ def about(request):
 
 # Add new view
 def watches_index(request):
-  watches = Watch.objects.all()
+  watches = Watch.objects.filter(user=request.user)
   return render(request, 'watches/index.html', { 'watches': watches })
 
 # update this view function
+@login_required
 def watches_detail(request, watch_id):
   watch = Watch.objects.get(id=watch_id)
   # instantiate FeedingForm to be rendered in the template
@@ -37,6 +42,7 @@ def watches_detail(request, watch_id):
     'straps' : straps_watch_doesnt_have,
   })
 
+@login_required
 def add_service(request, watch_id):
   # create the ModelForm using the data in request.POST
   form = ServiceForm(request.POST)
@@ -46,7 +52,8 @@ def add_service(request, watch_id):
     new_service.watch_id = watch_id
     new_service.save()
   return redirect('detail', watch_id=watch_id) 
-
+  
+@login_required
 def assoc_strap(request, watch_id, strap_id,):
   # Note that you can pass a straps id instead of the whole object  
   Watch.objects.get(id=watch_id).straps.add(strap_id)
